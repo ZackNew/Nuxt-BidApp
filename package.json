@@ -12,6 +12,7 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@primevue/themes": "^4.0.7",
+    "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.13.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.7",
@@ -20,6 +21,7 @@
   },
   "packageManager": "pnpm@9.12.0+sha512.4abf725084d7bcbafbd728bfc7bee61f2f791f977fd87542b3579dcb23504d170d46337945e4c66485cd12d588a0c0e570ed9c477e7ccdd8507cf05f3f92eaca",
   "devDependencies": {
-    "@primevue/nuxt-module": "^4.0.7"
+    "@primevue/nuxt-module": "^4.0.7",
+    "@types/jsonwebtoken": "^9.0.7"
   }
 }

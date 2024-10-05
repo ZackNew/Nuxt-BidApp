@@ -4,6 +4,8 @@
     <div class="max-w-[1280px] mx-auto px-4">
       <slot />
     </div>
+    <!-- Modals -->
+    <AuthModal />
   </div>
 </template>
 

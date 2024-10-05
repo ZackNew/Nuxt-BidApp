@@ -13,4 +13,9 @@ declare global {
       count: number;
     };
   }
+  interface User {
+    id: string;
+    username: string;
+    password: string;
+  }
 }

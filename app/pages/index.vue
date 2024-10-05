@@ -1,6 +1,7 @@
 <template>
   <div class="w-full">
-    <HeroSection />
+
+    <HeroSection @click="register('new user', 'the_password')" />
 
     <!-- TODO: Product for bidding -->
 
@@ -16,6 +17,7 @@
 
 <script setup lang="ts">
 const { products, fetchProducts } = useProducts()
+const { register } = useAuth()
 
 onMounted(async () => {
   await fetchProducts()
