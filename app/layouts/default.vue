@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-primary-50 bg-opacity-40">
     <Header />
     <div class="max-w-[1280px] mx-auto px-4">
       <slot />

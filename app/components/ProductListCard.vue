@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded flex flex-col">
+    class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 flex flex-col rounded-lg bg-white">
     <div class="bg-surface-50 flex justify-center rounded p-4">
       <div class="relative mx-auto">
         <img class="rounded w-full h-48 object-contain" :src="product.product.image" :alt="product.product.title"

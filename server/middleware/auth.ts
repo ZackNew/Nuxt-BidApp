@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 
 export default defineEventHandler(async (event) => {
-  console.log("fing");
-
   const url = getRequestURL(event).pathname;
   const routesToSkip = [
     "/api/auth/signin",

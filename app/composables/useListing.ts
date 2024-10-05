@@ -17,7 +17,7 @@ export const useListing = () => {
 
       error.value = errorMessage;
 
-      console.error("Error fetching products:", errorMessage);
+      console.error("Error fetching listings:", errorMessage);
     } finally {
       loading.value = false;
     }
@@ -37,7 +37,7 @@ export const useListing = () => {
       const errorMessage =
         (err as Error).message || "An unknown error occurred";
 
-      console.error("Error fetching products:", errorMessage);
+      console.error("Error fetching listing:", errorMessage);
     }
   };
 

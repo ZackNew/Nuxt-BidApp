@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.5",
     "@primevue/themes": "^4.0.7",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.13.0",
+    "pinia": "^2.2.4",
+    "pinia-plugin-persistedstate": "^4.1.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.7",
     "vue": "latest",

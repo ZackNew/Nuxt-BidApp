@@ -1,6 +1,6 @@
 <template>
   <div
-    class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded flex flex-col">
+    class="p-6 border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-900 rounded-lg flex flex-col bg-white">
     <div class="bg-surface-50 flex justify-center rounded p-4">
       <div class="relative mx-auto">
         <img class="rounded w-full h-48 object-contain" :src="product.image" :alt="product.title"
@@ -17,14 +17,14 @@
       <div>
         <Button icon="pi pi-hammer" label="Add to bid listing" size="small" :disabled="false"
           class="flex-auto whitespace-nowrap w-full"
-          @click="user ? showListingModal = true : toggleAuthModal()"></Button>
+          @click="userStore.currentUser ? showListingModal = true : toggleAuthModal()"></Button>
       </div>
     </div>
   </div>
   <!-- Add lisiting modal -->
   <Dialog v-model:visible="showListingModal" :header="`Add '${product.title}' to listing`" modal
     :style="{ width: '30rem' }">
-    <AddListingModal :product="props.product" />
+    <AddListingModal :product="props.product" @modal-closed="showListingModal = false" />
   </Dialog>
 </template>
 
@@ -33,7 +33,7 @@ const props = defineProps<{
   product: Product
 }>()
 
-const { user } = useAuth()
+const userStore = useUserStore()
 const { toggleAuthModal } = useUiHelpers()
 
 const showListingModal = ref<boolean>(false)

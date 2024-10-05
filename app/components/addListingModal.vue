@@ -40,6 +40,7 @@ const canHitActionButton = computed(() => {
 async function addProductToListing() {
   if (initialPrice.value !== null) {
     await addToListing(description.value, initialPrice.value, props.product)
+    emits('modalClosed')
   }
 }
 </script>

@@ -1,8 +1,9 @@
 export const useAuth = () => {
-  const user = useState<User | null>(() => null);
+  // const user = useState<User | null>(() => null);
   const error = ref<string | null>(null);
   const loading = ref<boolean>(false);
   const { toggleAuthModal } = useUiHelpers();
+  const userStore = useUserStore();
 
   const register = async (username: string, password: string) => {
     try {
@@ -34,7 +35,8 @@ export const useAuth = () => {
         method: "POST",
         body: { username, password },
       });
-      result.user && (user.value = result.user);
+
+      result.user && (userStore.currentUser = result.user);
 
       toggleAuthModal();
     } catch (err: any) {
@@ -57,7 +59,7 @@ export const useAuth = () => {
         method: "POST",
       });
 
-      user.value = null;
+      userStore.currentUser = null;
     } catch (err: any) {
       if (err.data?.statusMessage) {
         error.value = err.data.statusMessage;
@@ -69,5 +71,5 @@ export const useAuth = () => {
     }
   };
 
-  return { user, loading, error, register, login, logout };
+  return { loading, error, register, login, logout };
 };

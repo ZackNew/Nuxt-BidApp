@@ -13,7 +13,7 @@
       </nuxt-link>
     </template>
     <template #end>
-      <div v-if="user" class="flex align-items-center gap-2">
+      <div v-if="userStore.currentUser" class="flex align-items-center gap-2">
         <Avatar icon="pi pi-user" shape="circle" @click="toggleMenuProfile" aria-haspopup="true"
           aria-controls="overlay_menu" class="bg-primary-100 text-primary-500" />
         <Menu ref="menuProfile" id="overlay_menu" :model="menuProfileItems" :popup="true" />
@@ -33,7 +33,8 @@ interface MenuItem {
 }
 
 const { toggleAuthModal, isAuthModal } = useUiHelpers()
-const { user, logout } = useAuth()
+const { logout } = useAuth()
+const userStore = useUserStore()
 
 const menuProfile = ref();
 
