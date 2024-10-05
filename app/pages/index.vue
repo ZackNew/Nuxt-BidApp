@@ -1,21 +1,25 @@
 <template>
   <div class="w-full">
 
-    <HeroSection @click="register('new user', 'the_password')" />
+    <HeroSection />
 
     <!-- TODO: Product for bidding -->
-    <h2 class="text-xl text-primary-950 font-bold my-8">Listed Products</h2>
-    <div v-if="productListings" class="grid grid-cols-12 gap-4">
-      <div v-for="product in productListings" :key="product.id" class="col-span-3">
-        <ProductListCard :product="product" />
+    <div v-if="productListings">
+      <h2 class="text-xl text-primary-950 font-bold my-8">Listed Products</h2>
+      <div class="grid grid-cols-12 gap-4">
+        <div v-for="product in productListings" :key="product.id" class="col-span-3">
+          <ProductListCard :product="product" />
+        </div>
       </div>
     </div>
 
     <!-- Product list -->
-    <h2 class="text-xl text-primary-950 font-bold my-8">Available Products</h2>
-    <div v-if="products" class="grid grid-cols-12 gap-4">
-      <div v-for="product in products" :key="product.id" class="col-span-3">
-        <ProductCard :product="product" />
+    <div v-if="products">
+      <h2 class="text-xl text-primary-950 font-bold my-8">Available Products</h2>
+      <div class="grid grid-cols-12 gap-4">
+        <div v-for="product in products" :key="product.id" class="col-span-3">
+          <ProductCard :product="product" @product-added="fetchProductListings()" />
+        </div>
       </div>
     </div>
   </div>
@@ -24,7 +28,6 @@
 <script setup lang="ts">
 const { products, fetchProducts } = useProducts()
 const { productListings, fetchProductListings } = useListing()
-const { register } = useAuth()
 
 onMounted(async () => {
   await fetchProducts()

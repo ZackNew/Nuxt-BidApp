@@ -23,6 +23,7 @@
 <script setup lang="ts">
 const emits = defineEmits<{
   (event: 'modalClosed'): void
+  (event: 'productAdded'): void
 }>()
 const props = defineProps<{
   product: Product
@@ -40,6 +41,7 @@ const canHitActionButton = computed(() => {
 async function addProductToListing() {
   if (initialPrice.value !== null) {
     await addToListing(description.value, initialPrice.value, props.product)
+    emits('productAdded')
     emits('modalClosed')
   }
 }

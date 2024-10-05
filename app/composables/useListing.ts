@@ -10,7 +10,7 @@ export const useListing = () => {
 
       const listingResult = await $fetch("/api/listing/listings");
 
-      productListings.value = listingResult as Listing[];
+      productListings.value = listingResult;
     } catch (err) {
       const errorMessage =
         (err as Error).message || "An unknown error occurred";

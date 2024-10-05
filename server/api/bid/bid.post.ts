@@ -1,23 +1,18 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const { description, initialPrice, product } = body;
+  const { price, listingId } = body;
   const user: User = event.context.user;
 
   try {
-    const newListing: Listing = {
+    const newBid: Bid = {
       id: Date.now().toString(),
-      description,
+      price,
+      listingId,
       userId: user.id,
-      open: true,
-      bidCount: 0,
-      bidders: [],
-      initialPrice,
-      product,
     };
-
-    await $fetch("http://localhost:3001/listings", {
+    await $fetch("http://localhost:3001/bids", {
       method: "POST",
-      body: newListing,
+      body: newBid,
     });
 
     return { success: true, message: "Added to list" };

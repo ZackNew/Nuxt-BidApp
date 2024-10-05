@@ -24,11 +24,15 @@
   <!-- Add lisiting modal -->
   <Dialog v-model:visible="showListingModal" :header="`Add '${product.title}' to listing`" modal
     :style="{ width: '30rem' }">
-    <AddListingModal :product="props.product" @modal-closed="showListingModal = false" />
+    <AddListingModal :product="props.product" @modal-closed="showListingModal = false"
+      @product-added="$emit('productAdded')" />
   </Dialog>
 </template>
 
 <script setup lang="ts">
+const emits = defineEmits<{
+  (event: 'productAdded'): void
+}>()
 const props = defineProps<{
   product: Product
 }>()

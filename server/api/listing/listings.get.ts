@@ -1,6 +1,11 @@
 export default defineEventHandler(async (event) => {
   try {
     const response: Listing[] = await $fetch("http://localhost:3001/listings");
+
+    response.forEach((listing) => {
+      delete listing.bidders;
+    });
+
     return response;
   } catch (error) {
     console.error("Error fetching product listings:", error);

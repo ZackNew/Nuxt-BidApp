@@ -42,7 +42,7 @@ const items = ref<MenuItem[]>([
   {
     label: 'Home',
     icon: 'pi pi-home',
-    link: '/#',
+    link: '/',
   },
   {
     label: 'My Listings',

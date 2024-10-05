@@ -25,7 +25,15 @@ declare global {
     initialPrice: number;
     open: boolean;
     userId: string;
-    bidders: string[];
+    bidCount: number;
+    bidders?: string[];
     product: Product;
+  }
+
+  interface Bid {
+    id: string;
+    price: number;
+    listingId: string;
+    userId: string;
   }
 }
