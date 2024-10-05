@@ -15,6 +15,18 @@ export default defineEventHandler(async (event) => {
       body: newBid,
     });
 
+    const listing: Listing = await $fetch(
+      `http://localhost:3001/listings/${listingId}`
+    );
+
+    listing.bids?.push(newBid);
+    listing.bidCount = listing.bidCount + 1;
+
+    await $fetch(`http://localhost:3001/listings/${listingId}`, {
+      method: "PUT",
+      body: listing,
+    });
+
     return { success: true, message: "Added to list" };
   } catch (error: any) {
     console.error("Error during registration:", error);

@@ -47,7 +47,7 @@ const items = ref<MenuItem[]>([
   {
     label: 'My Listings',
     icon: 'pi pi-list',
-    link: "/#"
+    link: "/my-listings"
   },
   {
     label: 'My bids',

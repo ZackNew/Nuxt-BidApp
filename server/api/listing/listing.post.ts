@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
       userId: user.id,
       open: true,
       bidCount: 0,
-      bidders: [],
+      bids: [],
       initialPrice,
       product,
     };

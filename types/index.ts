@@ -26,7 +26,7 @@ declare global {
     open: boolean;
     userId: string;
     bidCount: number;
-    bidders?: string[];
+    bids?: Bid[];
     product: Product;
   }
 

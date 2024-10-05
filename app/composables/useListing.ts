@@ -23,12 +23,33 @@ export const useListing = () => {
     }
   };
 
+  const getMyListings = async (): Promise<Listing[] | undefined> => {
+    try {
+      loading.value = true;
+      error.value = null;
+
+      const response = await $fetch("/api/listing/myListings");
+
+      return response;
+    } catch (err) {
+      const errorMessage =
+        (err as Error).message || "An unknown error occurred";
+
+      error.value = errorMessage;
+
+      console.error("Error fetching listings:", errorMessage);
+    } finally {
+      loading.value = false;
+    }
+  };
+
   const addToListing = async (
     description: string,
     initialPrice: number,
     product: Product
   ) => {
     try {
+      loading.value = true;
       await $fetch("/api/listing/listing", {
         method: "POST",
         body: { description, initialPrice, product },
@@ -38,8 +59,10 @@ export const useListing = () => {
         (err as Error).message || "An unknown error occurred";
 
       console.error("Error fetching listing:", errorMessage);
+    } finally {
+      loading.value = false;
     }
   };
 
-  return { productListings, fetchProductListings, addToListing };
+  return { productListings, fetchProductListings, addToListing, getMyListings };
 };
