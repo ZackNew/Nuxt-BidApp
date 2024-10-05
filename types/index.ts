@@ -18,4 +18,14 @@ declare global {
     username: string;
     password: string;
   }
+
+  interface Listing {
+    id: string;
+    description: string;
+    initialPrice: number;
+    open: boolean;
+    userId: string;
+    bidders: string[];
+    product: Product;
+  }
 }
