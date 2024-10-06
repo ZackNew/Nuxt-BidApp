@@ -29,9 +29,14 @@
 const { products, fetchProducts } = useProducts()
 const { productListings, fetchProductListings } = useListing()
 
+const { resume } = useIntervalFn(async () => {
+  await fetchProductListings()
+}, 10000, { immediate: false })
+
 onMounted(async () => {
   await fetchProductListings()
   await fetchProducts()
+  resume()
 })
 </script>
 

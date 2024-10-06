@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@primevue/nuxt-module",
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
+    "@vueuse/nuxt",
   ],
 
   primevue: {

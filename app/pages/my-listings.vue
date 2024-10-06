@@ -66,12 +66,25 @@ async function onStatusUpdate(listing: Listing) {
   await getMyListings()
 }
 
-onMounted(async () => {
+async function fetchListings() {
   const listing = await getMyListings()
   if (listing) {
     myListings.value = listing
+    return true
+  } else {
+    return false
   }
+}
 
+const { resume } = useIntervalFn(async () => {
+  await fetchListings()
+}, 10000, { immediate: false })
+
+onMounted(async () => {
+  const result = await fetchListings()
+  if (result) {
+    resume()
+  }
 })
 
 </script>
