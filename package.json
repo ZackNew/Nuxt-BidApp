@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start:db": "npx json-server db.json --port 3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -14,6 +15,7 @@
     "@pinia/nuxt": "^0.5.5",
     "@primevue/themes": "^4.0.7",
     "@vueuse/core": "^11.1.0",
+    "json-server": "1.0.0-beta.3",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.13.0",
     "pinia": "^2.2.4",

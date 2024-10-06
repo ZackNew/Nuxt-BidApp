@@ -2,6 +2,7 @@ export const useListing = () => {
   const productListings = ref<Listing[] | null>(null);
   const error = ref<string | null>(null);
   const loading = ref<boolean>(false);
+  const { showErrorMessage, showSuccessMessage } = useMessages();
 
   const fetchProductListings = async () => {
     try {
@@ -16,6 +17,7 @@ export const useListing = () => {
         (err as Error).message || "An unknown error occurred";
 
       error.value = errorMessage;
+      showErrorMessage("Error fetching listings");
 
       console.error("Error fetching listings:", errorMessage);
     } finally {
@@ -36,7 +38,7 @@ export const useListing = () => {
         (err as Error).message || "An unknown error occurred";
 
       error.value = errorMessage;
-
+      showErrorMessage("Error fetching your listings");
       console.error("Error fetching listings:", errorMessage);
     } finally {
       loading.value = false;
@@ -54,12 +56,13 @@ export const useListing = () => {
         method: "PUT",
         body: { updatedListing },
       });
+      showSuccessMessage("Update successfull");
     } catch (err) {
       const errorMessage =
         (err as Error).message || "An unknown error occurred";
 
       error.value = errorMessage;
-
+      showErrorMessage("Error updating list");
       console.error("Error updating list: ", errorMessage);
     } finally {
       loading.value = false;
@@ -77,11 +80,12 @@ export const useListing = () => {
         method: "POST",
         body: { description, initialPrice, product },
       });
+      showSuccessMessage("Product listed successfully");
     } catch (err) {
       const errorMessage =
         (err as Error).message || "An unknown error occurred";
-
-      console.error("Error fetching listing:", errorMessage);
+      showErrorMessage("error while adding list");
+      console.error("Error while adding list:", errorMessage);
     } finally {
       loading.value = false;
     }

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     "/api/products",
   ];
 
-  if (routesToSkip.includes(url) || process.client) {
+  if (routesToSkip.includes(url)) {
     return;
   }
 
