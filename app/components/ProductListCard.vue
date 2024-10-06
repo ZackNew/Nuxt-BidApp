@@ -13,8 +13,8 @@
         </p>
         <div class="text-sm font-medium mt-1 h-20">{{ product.product.title }}</div>
       </div>
-      <Button icon="pi pi-hammer" label="Set a bid" size="small" class="w-full"
-        @click="userStore.currentUser ? showBidModal = true : toggleAuthModal()" />
+      <Button v-if="userStore.currentUser?.id !== product.userId" icon="pi pi-hammer" label="Set a bid" size="small"
+        class="w-full" @click="userStore.currentUser ? showBidModal = true : toggleAuthModal()" />
     </div>
 
     <!-- Bid modal -->
