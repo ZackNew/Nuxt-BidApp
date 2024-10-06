@@ -1,8 +1,10 @@
-# Nuxt 3 Minimal Starter
+# Afri Bid Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Environment Setup
 
-## Setup
+Run `cp env.example.txt .env`
+
+## Project Setup
 
 Make sure to install the dependencies:
 
@@ -22,6 +24,26 @@ bun install
 
 ## Development Server
 
+### Json server
+
+Before starting the server run `cp db.example.json db.json` then:
+
+```bash
+# npm
+npm run start:db
+
+# pnpm
+pnpm run start:db
+
+# yarn
+yarn start:db
+
+# bun
+bun run start:db
+```
+
+### Frontend
+
 Start the development server on `http://localhost:3000`:
 
 ```bash
@@ -38,38 +60,52 @@ yarn dev
 bun run dev
 ```
 
-## Production
+## Tools Used
 
-Build the application for production:
+- **Frontend Framework**: [Nuxt.js](https://nuxt.com/)
 
-```bash
-# npm
-npm run build
+- **UI Component Library**: [PrimeVue](https://nuxt.com/modules/primevue)
 
-# pnpm
-pnpm run build
+- **Styling Utility**: [Tailwind CSS](https://nuxt.com/modules/tailwindcss)
 
-# yarn
-yarn build
+- **State Management**: [Pinia](https://nuxt.com/modules/pinia)
 
-# bun
-bun run build
-```
+- **State Persistance**: [pinia-plugin-persistedstate](https://nuxt.com/modules/pinia-plugin-persistedstate)
 
-Locally preview production build:
+- **Package Manager**: [pnpm](https://pnpm.io/installation)
 
-```bash
-# npm
-npm run preview
+- **Development Server**: [json-server](https://www.npmjs.com/package/json-server)
 
-# pnpm
-pnpm run preview
+- **Utilities**: [VueUse](https://nuxt.com/modules/vueuse)
 
-# yarn
-yarn preview
+- **Auth**: [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 
-# bun
-bun run preview
-```
+## Architecture
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### Frontend (Nuxt.js)
+
+- **Framework**: Nuxt.js (Vue.js-based)
+- **Responsibilities**:
+  - **Authentication & Authorization**: Handles user login, registration, and session management.
+  - **CRUD Operations**: Performs Create, Read, Update, and Delete operations for the application’s resources.
+  - **Client-Server Communication**: The Nuxt client sends requests to the Nuxt server for data handling and authentication-related tasks.
+
+### Backend (Nuxt.js Server)
+
+- **Role**: Middleware between the frontend and json-server.
+- **Responsibilities**:
+  - **Business Logic**: Manages user authentication, authorization, and CRUD operations.
+  - **Data Communication**: Interacts with json-server to persist and retrieve data.
+
+### Data Store (json-server.js)
+
+- **Function**:
+  - Acts as a lightweight REST API for data storage.
+  - Receives requests only from the Nuxt.js server.
+  - Stores resources such as users, product listing, and bid data.
+
+### Data Flow
+
+1. The **Nuxt.js client** communicates with the **Nuxt.js server** for application logic and data.
+2. The **Nuxt.js server** authenticates and authorizes requests, then forwards data-related operations to **json-server.js**.
+3. **json-server** processes and stores the data, responding to requests from the Nuxt.js server.
