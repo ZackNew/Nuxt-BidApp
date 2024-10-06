@@ -6,6 +6,9 @@
     </div>
     <!-- Modals -->
     <AuthModal />
+
+    <!-- Toast -->
+    <Toast />
   </div>
 </template>
 

@@ -16,7 +16,6 @@ export default defineEventHandler(async (event) => {
       initialPrice,
       product,
     };
-
     await $fetch(`${dbUrl}/listings`, {
       method: "POST",
       body: newListing,

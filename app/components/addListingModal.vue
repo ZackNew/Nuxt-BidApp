@@ -3,7 +3,7 @@
     <div class="mt-6">
       <FloatLabel>
         <Textarea v-model="description" rows="5" cols="40" />
-        <label>Writea description about the product</label>
+        <label>Write description about the product</label>
       </FloatLabel>
     </div>
     <div class="mt-6">

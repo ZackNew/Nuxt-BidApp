@@ -1,10 +1,12 @@
 <template>
   <Menubar class="text-sm">
     <template #start>
-      <div class="flex gap-2 items-center mr-10">
-        <img src="/images/Bid_logo.svg" alt="logo" class="w-14">
-        <h2 class="text-2xl font-black text-primary-500">BID HERE</h2>
-      </div>
+      <nuxt-link to="/">
+        <div class="flex gap-2 items-center mr-10 cursor-pointer">
+          <img src="/images/Bid_logo.svg" alt="logo" class="w-14">
+          <h2 class="text-2xl font-black text-primary-500">AFRI BID</h2>
+        </div>
+      </nuxt-link>
       <nuxt-link v-ripple class="flex items-center mx-4" to="/">
         <span class="pi pi-home" />
         <span class="ml-2">Home</span>

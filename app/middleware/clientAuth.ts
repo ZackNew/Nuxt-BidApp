@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  if (process.server) return;
+  if (import.meta.server) return;
 
   const userStore = useUserStore();
 
