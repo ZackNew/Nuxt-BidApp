@@ -1,15 +1,17 @@
 <template>
-  <Menubar :model="items" class="text-sm">
+  <Menubar class="text-sm">
     <template #start>
       <div class="flex gap-2 items-center mr-10">
         <img src="/images/Bid_logo.svg" alt="logo" class="w-14">
         <h2 class="text-2xl font-black text-primary-500">BID HERE</h2>
       </div>
-    </template>
-    <template #item="{ item, props, hasSubmenu, root }">
-      <nuxt-link v-ripple class="flex items-center" v-bind="props.action" :to="item.link">
-        <span :class="item.icon" />
-        <span class="ml-2">{{ item.label }}</span>
+      <nuxt-link v-ripple class="flex items-center mx-4" to="/">
+        <span class="pi pi-home" />
+        <span class="ml-2">Home</span>
+      </nuxt-link>
+      <nuxt-link v-if="userStore.currentUser" v-ripple class="flex items-center" to="/my-listings">
+        <span class="pi pi-list " />
+        <span class="ml-2"> My listing </span>
       </nuxt-link>
     </template>
     <template #end>
@@ -30,11 +32,14 @@ interface MenuItem {
   label: string,
   icon: string,
   link: string,
+  show: boolean
 }
 
 const { toggleAuthModal, isAuthModal } = useUiHelpers()
 const { logout } = useAuth()
 const userStore = useUserStore()
+
+const isUser = computed<boolean>(() => !!userStore.currentUser)
 
 const menuProfile = ref();
 
@@ -42,16 +47,19 @@ const items = ref<MenuItem[]>([
   {
     label: 'Home',
     icon: 'pi pi-home',
+    show: true,
     link: '/',
   },
   {
     label: 'My Listings',
     icon: 'pi pi-list',
+    show: isUser.value,
     link: "/my-listings"
   },
   {
     label: 'My bids',
     icon: 'pi pi-hammer',
+    show: isUser.value,
     link: "/#"
   },
 ]);

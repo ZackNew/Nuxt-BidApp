@@ -3,8 +3,11 @@ import jwt from "jsonwebtoken";
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event).pathname;
 
+  if (!url.startsWith("/api")) {
+    return;
+  }
+
   const routesToSkip = [
-    "/",
     "/api/auth/signin",
     "/api/auth/register",
     "/api/auth/signout",
@@ -12,7 +15,7 @@ export default defineEventHandler(async (event) => {
     "/api/products",
   ];
 
-  if (routesToSkip.includes(url)) {
+  if (routesToSkip.includes(url) || process.client) {
     return;
   }
 

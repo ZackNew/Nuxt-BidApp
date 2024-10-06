@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
       price,
       listingId,
       userId: user.id,
+      username: user.username,
     };
     await $fetch("http://localhost:3001/bids", {
       method: "POST",

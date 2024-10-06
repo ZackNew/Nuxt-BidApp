@@ -35,5 +35,6 @@ declare global {
     price: number;
     listingId: string;
     userId: string;
+    username: string;
   }
 }

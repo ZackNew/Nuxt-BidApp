@@ -30,8 +30,8 @@ const { products, fetchProducts } = useProducts()
 const { productListings, fetchProductListings } = useListing()
 
 onMounted(async () => {
-  await fetchProducts()
   await fetchProductListings()
+  await fetchProducts()
 })
 </script>
 
