@@ -58,7 +58,8 @@ export const useAuth = () => {
       await $fetch("/api/auth/signout", {
         method: "POST",
       });
-
+      const router = useRouter();
+      router.push("/");
       userStore.currentUser = null;
     } catch (err: any) {
       if (err.data?.statusMessage) {

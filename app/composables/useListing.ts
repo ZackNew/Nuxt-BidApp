@@ -43,6 +43,29 @@ export const useListing = () => {
     }
   };
 
+  const updateListingStatus = async (
+    updatedListing: Listing
+  ): Promise<void> => {
+    try {
+      loading.value = true;
+      error.value = null;
+
+      await $fetch("/api/listing/updateStatus", {
+        method: "PUT",
+        body: { updatedListing },
+      });
+    } catch (err) {
+      const errorMessage =
+        (err as Error).message || "An unknown error occurred";
+
+      error.value = errorMessage;
+
+      console.error("Error updating list: ", errorMessage);
+    } finally {
+      loading.value = false;
+    }
+  };
+
   const addToListing = async (
     description: string,
     initialPrice: number,
@@ -64,5 +87,11 @@ export const useListing = () => {
     }
   };
 
-  return { productListings, fetchProductListings, addToListing, getMyListings };
+  return {
+    productListings,
+    fetchProductListings,
+    addToListing,
+    getMyListings,
+    updateListingStatus,
+  };
 };

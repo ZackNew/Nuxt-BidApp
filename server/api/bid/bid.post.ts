@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     );
 
     listing.bids?.push(newBid);
-    listing.bidCount = listing.bidCount + 1;
+    listing.bidCount = listing.bids?.length || 0;
 
     await $fetch(`http://localhost:3001/listings/${listingId}`, {
       method: "PUT",

@@ -22,12 +22,12 @@ export default defineEventHandler(async (event) => {
 
     return { success: true, message: "Added to list" };
   } catch (error: any) {
-    console.error("Error during registration:", error);
+    console.error("Error during adding:", error);
 
     if (!error.statusCode) {
       throw createError({
         statusCode: 500,
-        statusMessage: "Error during registration",
+        statusMessage: "Error during adding",
       });
     }
 

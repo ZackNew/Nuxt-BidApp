@@ -19,10 +19,9 @@
       </Column>
       <Column field="bidCount" header="Bids count" style="width: 20%">
       </Column>
-      <Column header="Name" style="width: 20%">
+      <Column header="Status" style="width: 20%">
         <template #body="{ data }">
-          toggle
-
+          <ToggleSwitch :modelValue="data.open" @update:modelValue="onStatusUpdate(data)" />
         </template>
       </Column>
       <template #expansion="{ data }">
@@ -49,10 +48,16 @@ definePageMeta({
   middleware: ['client-auth'],
 });
 
-const { getMyListings } = useListing()
+const { getMyListings, updateListingStatus } = useListing()
 
 const myListings = ref<Listing[] | null>(null)
 const expandedRows = ref({});
+
+async function onStatusUpdate(listing: Listing) {
+  listing.open = !listing.open
+  await updateListingStatus(listing)
+  await getMyListings()
+}
 
 onMounted(async () => {
   const listing = await getMyListings()
