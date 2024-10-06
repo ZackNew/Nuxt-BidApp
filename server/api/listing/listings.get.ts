@@ -1,6 +1,8 @@
 export default defineEventHandler(async (event) => {
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+
   try {
-    const response: Listing[] = await $fetch("http://localhost:3001/listings");
+    const response: Listing[] = await $fetch(`${dbUrl}/listings`);
 
     response.forEach((listing) => {
       delete listing.bids;

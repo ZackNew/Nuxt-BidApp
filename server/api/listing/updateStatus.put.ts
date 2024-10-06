@@ -3,9 +3,11 @@ export default defineEventHandler(async (event) => {
   const { updatedListing } = body;
   const user: User = event.context.user;
 
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+
   try {
     if (user.id === updatedListing.userId) {
-      await $fetch(`http://localhost:3001/listings/${updatedListing.id}`, {
+      await $fetch(`${dbUrl}/listings/${updatedListing.id}`, {
         method: "PUT",
         body: updatedListing,
       });

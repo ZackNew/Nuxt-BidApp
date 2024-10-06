@@ -3,7 +3,7 @@
 
     <HeroSection />
 
-    <!-- TODO: Product for bidding -->
+    <!-- Product for bidding -->
     <div v-if="productListings">
       <h2 class="text-xl text-primary-950 font-bold my-8">Listed Products</h2>
       <div class="grid grid-cols-12 gap-4">

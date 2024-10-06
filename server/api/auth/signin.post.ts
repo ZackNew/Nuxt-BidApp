@@ -4,10 +4,11 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { username, password } = body;
 
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+  const jwtSecretKey = useRuntimeConfig().JWT_SECRET_KET;
+
   try {
-    const data: User[] = await $fetch(
-      `http://localhost:3001/users?username=${username}`
-    );
+    const data: User[] = await $fetch(`${dbUrl}/users?username=${username}`);
 
     if (data?.length == 0) {
       throw createError({
@@ -25,7 +26,7 @@ export default defineEventHandler(async (event) => {
 
     const token = jwt.sign(
       { id: data[0].id, username: data[0].username },
-      "your-secret-key"
+      jwtSecretKey
     );
 
     setCookie(event, "access_token", token);

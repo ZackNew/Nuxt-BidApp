@@ -17,6 +17,11 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
   ],
 
+  runtimeConfig: {
+    DATA_STORAGE_API: process.env.DATA_STORAGE_API,
+    JWT_SECRET_KET: process.env.JWT_SECRET_KET,
+  },
+
   primevue: {
     importTheme: { from: "@/mytheme.ts" },
   },

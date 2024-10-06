@@ -3,6 +3,8 @@ export default defineEventHandler(async (event) => {
   const { description, initialPrice, product } = body;
   const user: User = event.context.user;
 
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+
   try {
     const newListing: Listing = {
       id: Date.now().toString(),
@@ -15,7 +17,7 @@ export default defineEventHandler(async (event) => {
       product,
     };
 
-    await $fetch("http://localhost:3001/listings", {
+    await $fetch(`${dbUrl}/listings`, {
       method: "POST",
       body: newListing,
     });

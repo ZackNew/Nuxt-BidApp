@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 export default defineEventHandler(async (event) => {
   const url = getRequestURL(event).pathname;
 
+  const jwtSecretKey = useRuntimeConfig().JWT_SECRET_KET;
+
   if (!url.startsWith("/api")) {
     return;
   }
@@ -30,7 +32,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "your-secret-key");
+    const decoded = jwt.verify(token, jwtSecretKey);
 
     event.context.user = decoded;
   } catch (error) {

@@ -1,8 +1,10 @@
 export default defineEventHandler(async (event) => {
   const user: User = event.context.user;
 
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+
   try {
-    const response: Listing[] = await $fetch("http://localhost:3001/listings", {
+    const response: Listing[] = await $fetch(`${dbUrl}/listings`, {
       params: {
         userId: user.id,
       },

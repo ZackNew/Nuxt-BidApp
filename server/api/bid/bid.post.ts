@@ -3,6 +3,8 @@ export default defineEventHandler(async (event) => {
   const { price, listingId } = body;
   const user: User = event.context.user;
 
+  const dbUrl = useRuntimeConfig().DATA_STORAGE_API;
+
   try {
     const newBid: Bid = {
       id: Date.now().toString(),
@@ -11,19 +13,17 @@ export default defineEventHandler(async (event) => {
       userId: user.id,
       username: user.username,
     };
-    await $fetch("http://localhost:3001/bids", {
+    await $fetch(`${dbUrl}/bids`, {
       method: "POST",
       body: newBid,
     });
 
-    const listing: Listing = await $fetch(
-      `http://localhost:3001/listings/${listingId}`
-    );
+    const listing: Listing = await $fetch(`${dbUrl}/listings/${listingId}`);
 
     listing.bids?.push(newBid);
     listing.bidCount = listing.bids?.length || 0;
 
-    await $fetch(`http://localhost:3001/listings/${listingId}`, {
+    await $fetch(`${dbUrl}/listings/${listingId}`, {
       method: "PUT",
       body: listing,
     });
